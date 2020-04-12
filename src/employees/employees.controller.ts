@@ -1,15 +1,19 @@
 import {Controller, Get, Param} from "@nestjs/common";
+import {Connection} from "typeorm";
 
 @Controller('employees')
 export class EmployeesController {
     @Get()
-    findAll(): string {
-        return 'this action returns all employees';
+    findAll(): Promise<string> {
+        return this.connection.query('SELECT * FROM wp_employees')
+            .then((res) => res);
     }
 
     @Get(':ID')
     findOne(@Param() params): string {
-        console.log(params.ID);
         return `this action returns Employee ${params.ID}`;
+    }
+
+    constructor(private connection: Connection) {
     }
 }
