@@ -1,4 +1,4 @@
-import {Injectable} from "@nestjs/common";
+import {Injectable, Query} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Employee} from "./employee.entity";
 import {Connection, Repository} from "typeorm";
@@ -11,8 +11,8 @@ export class EmployeesService {
         private connection: Connection,
     ) {}
 
-    findAll(): Promise<Employee[]> {
-        return this.employeesRepository.find();
+    findAll(@Query() queryParams): Promise<Employee[]> {
+        return this.employeesRepository.find(queryParams);
     }
 
     findOne(id: string): Promise<Employee> {
