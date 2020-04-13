@@ -1,7 +1,8 @@
 export class EmployeeDto {
-    readonly ID: number;
-    readonly first_name: string;
-    readonly last_name: string;
+    readonly id: number;
+    readonly firstName: string;
+    readonly lastName: string;
     readonly description: string;
+    readonly title: string;
     readonly photo: string;
 }

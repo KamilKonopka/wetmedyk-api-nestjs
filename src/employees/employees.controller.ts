@@ -1,11 +1,18 @@
-import {Controller, Get, Param, Query} from "@nestjs/common";
-import {Connection} from "typeorm";
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    ParseIntPipe, Patch,
+    Post,
+    Query,
+    UsePipes,
+    ValidationPipe
+} from "@nestjs/common";
 import {EmployeesService} from "./employees.service";
 import {Employee} from "./employee.entity";
-
-export interface StringObject {
-    [key: string]: string;
-}
+import {EmployeeDto} from "./interfaces/employee.dto";
 
 @Controller('employees')
 export class EmployeesController {
@@ -14,11 +21,30 @@ export class EmployeesController {
         return this.employeesService.findAll(queryParams);
     }
 
-    @Get(':ID')
-    findOne(@Param() params): Promise<Employee> {
-        return this.employeesService.findOne(params.ID);
+    @Get(':id')
+    findOne(@Param('id', ParseIntPipe) id: number): Promise<Employee> {
+        return this.employeesService.findOne(id);
     }
 
-    constructor(private connection: Connection, private employeesService: EmployeesService) {
+    @Post()
+    // @UsePipes(ValidationPipe)
+    createEmployee(@Body() employeeDto: EmployeeDto): Promise<Employee> {
+        return this.employeesService.createEmployee(employeeDto);
+    }
+
+    @Delete('/:id')
+    deleteEmployee(@Param('id', ParseIntPipe) id: number): Promise<void> {
+        return this.employeesService.deleteEmployee(id);
+    }
+
+    @Patch('/:id')
+    updateEmployee(
+        @Param('id') id: number,
+        @Body() employee: Partial<Employee>,
+        ): Promise<Employee> {
+        return this.employeesService.updateEmployee(employee);
+    }
+
+    constructor(private employeesService: EmployeesService) {
     }
 }
