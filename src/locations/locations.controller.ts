@@ -1,8 +1,10 @@
-import {Controller, Get, Param, Query} from "@nestjs/common";
+import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
 import {LocationsService} from "./locations.service";
 import {Location} from "./location.entity";
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('locations')
+@UseGuards(AuthGuard())
 export class LocationsController {
     @Get()
     findAll(@Query() queryParams): Promise<Location[]> {
