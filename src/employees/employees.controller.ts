@@ -6,15 +6,15 @@ import {
     Param,
     ParseIntPipe, Patch,
     Post,
-    Query,
-    UsePipes,
-    ValidationPipe
-} from "@nestjs/common";
+    Query, UseGuards,
+} from '@nestjs/common';
 import {EmployeesService} from "./employees.service";
 import {Employee} from "./employee.entity";
 import {EmployeeDto} from "./interfaces/employee.dto";
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('employees')
+@UseGuards(AuthGuard())
 export class EmployeesController {
     @Get()
     findAll(@Query() queryParams): Promise<Employee[]> {
