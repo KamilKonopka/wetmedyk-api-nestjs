@@ -4,7 +4,7 @@ import {Location} from "./location.entity";
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('locations')
-@UseGuards(AuthGuard())
+// @UseGuards(AuthGuard())
 export class LocationsController {
     @Get()
     findAll(@Query() queryParams): Promise<Location[]> {

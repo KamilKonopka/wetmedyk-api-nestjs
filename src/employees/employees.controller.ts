@@ -14,7 +14,7 @@ import {EmployeeDto} from "./interfaces/employee.dto";
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('employees')
-@UseGuards(AuthGuard())
+// @UseGuards(AuthGuard())
 export class EmployeesController {
     @Get()
     findAll(@Query() queryParams): Promise<Employee[]> {
