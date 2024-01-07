@@ -1,16 +1,16 @@
-import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Location extends BaseEntity {
-    @PrimaryGeneratedColumn() ID: number;
+  @PrimaryGeneratedColumn() ID: number;
 
-    @Column() name: string;
+  @Column() name: string;
 
-    @Column() address: string;
+  @Column() address: string;
 
-    @Column() phone: string;
+  @Column() phone: string;
 
-    @Column() openHours: string;
+  @Column() openHours: string;
 
-    @Column() mapUrl: string;
+  @Column() mapUrl: string;
 }
