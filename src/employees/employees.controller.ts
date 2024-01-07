@@ -6,12 +6,11 @@ import {
     Param,
     ParseIntPipe, Patch,
     Post,
-    Query, UseGuards,
+    Query,
 } from '@nestjs/common';
 import {EmployeesService} from "./employees.service";
 import {Employee} from "./employee.entity";
 import {EmployeeDto} from "./interfaces/employee.dto";
-import { AuthGuard } from '@nestjs/passport';
 
 @Controller('employees')
 // @UseGuards(AuthGuard())

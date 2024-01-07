@@ -16,7 +16,7 @@ export class EmployeesService {
     }
 
     async findOne(id: number): Promise<Employee> {
-        const found = await this.employeesRepository.findOne(id);
+        const found = await this.employeesRepository.findOne({ id });
 
         if (!found) {
             throw new NotFoundException(`Employee with ID "${id} not found"`)
